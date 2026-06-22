@@ -1,0 +1,2 @@
+-- Ex. 7 — Données de seed
+-- À compléter : INSERT de 4 colonnes + 5 tâches (chaque tâche avec une couleur distincte).

@@ -1,0 +1,2 @@
+-- Ex. 5 — Schéma de la base (tables colonne + tache)
+-- À compléter : CREATE TABLE colonne, CREATE TABLE tache (PK, FK tache -> colonne, contraintes).

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframes — Kanban Jaydee (toutes les vues)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3a3a3a; --line:#9a9a9a; --paper:#f4f4f1;
+    --col-bg:#fff; --head-bg:#e9e9e6; --muted:#8d8d8d;
+    --sketch:"Gaegu","Comic Sans MS",Comic Sans,cursive;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; padding:30px; background:var(--paper); font-family:var(--sketch); color:var(--ink);}
+  .screen{max-width:1280px; margin:0 auto 46px;}
+  .screen-title{
+    font-size:20px; font-weight:700; margin:0 0 12px; padding:6px 12px;
+    background:var(--ink); color:#fff; border-radius:4px; display:inline-block;
+  }
+  .frame{
+    background:#fff; border:2px solid var(--ink); border-radius:6px;
+    box-shadow:4px 4px 0 rgba(0,0,0,.12); overflow:hidden;
+  }
+  /* ---------- TOP BAR ---------- */
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:14px 20px; border-bottom:2px solid var(--ink); background:var(--head-bg);}
+  .brand{display:flex; align-items:center; gap:12px; font-size:24px; font-weight:700;}
+  .logo{width:32px; height:32px; border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; font-size:17px; background:#fff;}
+  .top-right{display:flex; align-items:center; gap:14px;}
+  .search{border:2px solid var(--line); border-radius:4px; padding:6px 12px; font-family:var(--sketch); font-size:15px; color:var(--muted); background:#fff; min-width:180px;}
+  .btn{font-family:var(--sketch); font-size:17px; font-weight:700; padding:8px 16px; background:#fff; border:2px solid var(--ink); border-radius:4px; box-shadow:2px 2px 0 rgba(0,0,0,.18); cursor:pointer;}
+  /* ---------- BOARD ---------- */
+  .board{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; padding:18px; background:repeating-linear-gradient(45deg,#fafafa,#fafafa 10px,#f2f2f2 10px,#f2f2f2 20px);}
+  .col{background:var(--col-bg); border:2px solid var(--line); border-radius:5px; display:flex; flex-direction:column; min-height:470px;}
+  .col h2{margin:0; padding:11px; font-size:18px; font-weight:700; text-align:center; background:var(--head-bg); border-bottom:2px dashed var(--line); text-transform:uppercase; letter-spacing:1px;}
+  .count{font-size:13px; color:var(--muted); font-weight:400;}
+  .cards{padding:11px; display:flex; flex-direction:column; gap:11px; flex:1;}
+  .card{border:2px solid var(--line); border-left:8px solid var(--ink); border-radius:4px; padding:9px 11px; background:#fff; box-shadow:2px 2px 0 rgba(0,0,0,.08);}
+  .card-top{display:flex; align-items:center; justify-content:space-between; gap:6px;}
+  .ref{font-size:12px; color:var(--muted); font-weight:700; letter-spacing:.5px;}
+  .prio{font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; border:1.5px solid var(--ink); text-transform:uppercase;}
+  .p-high{background:#fdecea; border-color:#e74c3c; color:#c0392b;}
+  .p-med{background:#fef5e7; border-color:#e67e22; color:#b9651b;}
+  .p-low{background:#eafaf1; border-color:#27ae60; color:#1e8449;}
+  .name{font-size:17px; font-weight:700; margin:5px 0 6px;}
+  .row{display:flex; align-items:center; gap:6px; font-size:13px; color:#555; margin-top:4px;}
+  .row .ic{width:15px; text-align:center; color:var(--muted);}
+  .swatch{display:inline-block; width:12px; height:12px; border:1px solid var(--ink); vertical-align:middle;}
+  .status{display:inline-block; font-size:11px; font-weight:700; padding:1px 8px; border-radius:3px; border:1.5px dashed var(--line); color:#555; background:#f7f7f5;}
+  .card-foot{display:flex; align-items:center; justify-content:space-between; margin-top:8px; padding-top:7px; border-top:1.5px dashed var(--line);}
+  .avatar{width:22px; height:22px; border-radius:50%; border:2px solid var(--ink); background:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:700;}
+  .assignee{display:flex; align-items:center; gap:6px; font-size:13px; color:#444;}
+  .due{font-size:12px; color:var(--muted);}
+  .empty{border:2px dashed var(--line); border-radius:4px; padding:16px; text-align:center; color:var(--muted); font-size:14px;}
+  /* ---------- MODALS (shown statically, side by side) ---------- */
+  .modal-stage{display:flex; gap:30px; flex-wrap:wrap; padding:26px; background:repeating-linear-gradient(45deg,#ececea,#ececea 12px,#e4e4e1 12px,#e4e4e1 24px); border:2px solid var(--ink); border-radius:6px; justify-content:center;}
+  .modal{width:460px; background:#fff; border:2px solid var(--ink); border-radius:6px; box-shadow:6px 6px 0 rgba(0,0,0,.25); align-self:flex-start;}
+  .m-head{display:flex; align-items:center; justify-content:space-between; padding:13px 16px; background:var(--head-bg); border-bottom:2px solid var(--ink);}
+  .m-head .ref{font-size:13px;}
+  .m-title{font-size:20px; font-weight:700;}
+  .close{border:2px solid var(--ink); background:#fff; border-radius:4px; width:28px; height:28px; font-size:15px; font-weight:700; cursor:pointer; box-shadow:2px 2px 0 rgba(0,0,0,.18);}
+  .m-body{padding:16px;}
+  .field{margin-bottom:13px;}
+  label{display:block; font-size:14px; font-weight:700; margin-bottom:5px; color:#444;}
+  .control{width:100%; border:2px solid var(--line); border-radius:4px; padding:8px 10px; font-family:var(--sketch); font-size:16px; background:#fff; color:#333;}
+  .control.ph{color:var(--muted);}
+  .two{display:flex; gap:12px;} .two .field{flex:1;}
+  .colorrow{display:flex; align-items:center; gap:10px;}
+  .swatch-lg{width:34px; height:34px; border:2px solid var(--ink); border-radius:4px;}
+  .hint{font-size:12px; color:var(--muted); margin-top:4px;}
+  .lock{display:flex; align-items:center; gap:8px; border:2px dashed var(--line); border-radius:4px; padding:8px 10px; font-size:15px; color:#555; background:#f7f7f5;}
+  textarea.control{resize:none; min-height:64px;}
+  .meta-line{font-size:12px; color:var(--muted); margin-top:2px;}
+  .m-foot{display:flex; align-items:center; justify-content:space-between; padding:13px 16px; border-top:2px dashed var(--line); background:#fafafa;}
+  .btn-primary{background:#dff3e6; border-color:#27ae60;}
+  .btn-danger{background:#fdecea; border-color:#e74c3c; color:#c0392b;}
+  .foot-right{display:flex; gap:10px;}
+  .mvp-tag{display:inline-block; font-size:11px; font-weight:700; color:#1e8449; border:1.5px solid #27ae60; background:#eafaf1; border-radius:10px; padding:1px 8px; margin-left:8px;}
+</style>
+</head>
+<body>
+
+  <!-- ============ ÉCRAN 1 : TABLEAU KANBAN ============ -->
+  <div class="screen">
+    <div class="screen-title">Écran 1 — Tableau Kanban (route « / »)</div>
+    <div class="frame">
+      <div class="topbar">
+        <div class="brand"><span class="logo">▣</span> KANBAN — Jaydee Production</div>
+        <div class="top-right">
+          <span class="search">🔍 Rechercher une tâche…</span>
+          <button class="btn">+ Nouvelle tâche</button>
+        </div>
+      </div>
+      <div class="board">
+        <!-- À FAIRE -->
+        <div class="col">
+          <h2>À Faire <span class="count">(2)</span></h2>
+          <div class="cards">
+            <div class="card" style="border-left-color:#e74c3c">
+              <div class="card-top"><span class="ref">#OF-1021</span><span class="prio p-high">Haute</span></div>
+              <div class="name">Moule A12</div>
+              <div class="row"><span class="ic">▣</span> <span class="status">À Faire</span></div>
+              <div class="row"><span class="ic">🎨</span> couleur : <span class="swatch" style="background:#e74c3c"></span> E74C3C</div>
+              <div class="row"><span class="ic">📦</span> Réf. pièce : PL-A12 · Qté 500</div>
+              <div class="card-foot"><span class="assignee"><span class="avatar">ML</span> M. Leroy</span><span class="due">📅 18/06</span></div>
+            </div>
+            <div class="card" style="border-left-color:#8e44ad">
+              <div class="card-top"><span class="ref">#OF-1022</span><span class="prio p-low">Basse</span></div>
+              <div class="name">Réf X90</div>
+              <div class="row"><span class="ic">▣</span> <span class="status">À Faire</span></div>
+              <div class="row"><span class="ic">🎨</span> couleur : <span class="swatch" style="background:#8e44ad"></span> 8E44AD</div>
+              <div class="row"><span class="ic">📦</span> Réf. pièce : PL-X90 · Qté 120</div>
+              <div class="card-foot"><span class="assignee"><span class="avatar">SD</span> S. Diallo</span><span class="due">📅 22/06</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- EN COURS -->
+        <div class="col">
+          <h2>En Cours <span class="count">(1)</span></h2>
+          <div class="cards">
+            <div class="card" style="border-left-color:#3498db">
+              <div class="card-top"><span class="ref">#OF-1018</span><span class="prio p-med">Moyenne</span></div>
+              <div class="name">Pièce B07</div>
+              <div class="row"><span class="ic">▣</span> <span class="status">En Cours</span></div>
+              <div class="row"><span class="ic">🎨</span> couleur : <span class="swatch" style="background:#3498db"></span> 3498DB</div>
+              <div class="row"><span class="ic">📦</span> Réf. pièce : PL-B07 · Qté 1000</div>
+              <div class="card-foot"><span class="assignee"><span class="avatar">JD</span> J. Dupont</span><span class="due">📅 17/06</span></div>
+            </div>
+            <div class="empty">déposer une carte ici</div>
+          </div>
+        </div>
+        <!-- À CONTRÔLER -->
+        <div class="col">
+          <h2>À Contrôler <span class="count">(1)</span></h2>
+          <div class="cards">
+            <div class="card" style="border-left-color:#e67e22">
+              <div class="card-top"><span class="ref">#OF-1009</span><span class="prio p-high">Haute</span></div>
+              <div class="name">Lot C33</div>
+              <div class="row"><span class="ic">▣</span> <span class="status">À Contrôler</span></div>
+              <div class="row"><span class="ic">🎨</span> couleur : <span class="swatch" style="background:#e67e22"></span> E67E22</div>
+              <div class="row"><span class="ic">📦</span> Réf. pièce : PL-C33 · Qté 300</div>
+              <div class="card-foot"><span class="assignee"><span class="avatar">AK</span> A. Koffi</span><span class="due">📅 16/06</span></div>
+            </div>
+            <div class="empty">déposer une carte ici</div>
+          </div>
+        </div>
+        <!-- TERMINÉ -->
+        <div class="col">
+          <h2>Terminé <span class="count">(1)</span></h2>
+          <div class="cards">
+            <div class="card" style="border-left-color:#27ae60">
+              <div class="card-top"><span class="ref">#OF-0998</span><span class="prio p-low">Basse</span></div>
+              <div class="name">Pièce D01</div>
+              <div class="row"><span class="ic">▣</span> <span class="status">Terminé ✔</span></div>
+              <div class="row"><span class="ic">🎨</span> couleur : <span class="swatch" style="background:#27ae60"></span> 27AE60</div>
+              <div class="row"><span class="ic">📦</span> Réf. pièce : PL-D01 · Qté 750</div>
+              <div class="card-foot"><span class="assignee"><span class="avatar">JD</span> J. Dupont</span><span class="due">📅 14/06</span></div>
+            </div>
+            <div class="empty">déposer une carte ici</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ÉCRAN 2 & 3 : MODALES ============ -->
+  <div class="screen">
+    <div class="screen-title">Écrans 2 &amp; 3 — Modales (création &amp; détail de tâche)</div>
+    <div class="modal-stage">
+
+      <!-- MODALE CRÉATION (la pièce manquante du MVP) -->
+      <div class="modal">
+        <div class="m-head">
+          <div>
+            <div class="ref">Nouvelle tâche</div>
+            <div class="m-title">Créer une tâche <span class="mvp-tag">MVP</span></div>
+          </div>
+          <button class="close">✕</button>
+        </div>
+        <div class="m-body">
+          <div class="field">
+            <label>Nom de la tâche *</label>
+            <div class="control ph">Ex. : Moule A12</div>
+            <div class="hint">Obligatoire — validation : le nom doit être renseigné.</div>
+          </div>
+          <div class="field">
+            <label>Couleur de la tâche (hex RGB, sans #) *</label>
+            <div class="colorrow">
+              <span class="swatch-lg" style="background:#cccccc"></span>
+              <div class="control ph" style="flex:1">Ex. : 3498DB</div>
+            </div>
+            <div class="hint">Validation : 6 caractères hexadécimaux (0-9, A-F), sans le dièse.</div>
+          </div>
+          <div class="field">
+            <label>Colonne de destination</label>
+            <div class="lock">🔒 « À Faire » (assignée automatiquement)</div>
+            <div class="hint">La tâche est placée d'office dans « À Faire ». Si la colonne n'existe pas → erreur 400.</div>
+          </div>
+        </div>
+        <div class="m-foot">
+          <span></span>
+          <div class="foot-right">
+            <button class="btn">Annuler</button>
+            <button class="btn btn-primary">＋ Créer la tâche</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODALE DÉTAIL / ÉDITION (vision) -->
+      <div class="modal">
+        <div class="m-head">
+          <div>
+            <div class="ref">#OF-1021 · Ordre de fabrication</div>
+            <div class="m-title">Détail de la tâche</div>
+          </div>
+          <button class="close">✕</button>
+        </div>
+        <div class="m-body">
+          <div class="field">
+            <label>Nom de la tâche *</label>
+            <div class="control">Moule A12</div>
+          </div>
+          <div class="two">
+            <div class="field"><label>Colonne / Statut</label><div class="control">À Faire&nbsp;&nbsp;&nbsp;▾</div></div>
+            <div class="field"><label>Priorité</label><div class="control">Haute&nbsp;&nbsp;&nbsp;▾</div></div>
+          </div>
+          <div class="field">
+            <label>Couleur (hex RGB, sans #) *</label>
+            <div class="colorrow"><span class="swatch-lg" style="background:#e74c3c"></span><div class="control" style="flex:1">E74C3C</div></div>
+          </div>
+          <div class="two">
+            <div class="field"><label>Réf. pièce</label><div class="control">PL-A12</div></div>
+            <div class="field"><label>Quantité</label><div class="control">500</div></div>
+          </div>
+          <div class="two">
+            <div class="field"><label>Assigné à</label><div class="control"><span class="avatar" style="width:20px;height:20px;font-size:10px">ML</span> M. Leroy&nbsp;▾</div></div>
+            <div class="field"><label>Échéance</label><div class="control">📅 18/06/2026</div></div>
+          </div>
+          <div class="field"><label>Description</label><textarea class="control" readonly>Usinage du moule acier A12 pour la série automobile.</textarea></div>
+          <div class="meta-line">Créée le 14/06/2026 · Modifiée le 16/06/2026</div>
+        </div>
+        <div class="m-foot">
+          <button class="btn btn-danger">🗑 Supprimer</button>
+          <div class="foot-right">
+            <button class="btn">Annuler</button>
+            <button class="btn btn-primary">💾 Enregistrer</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
