@@ -21,12 +21,14 @@ un tableau de pilotage visuel des ordres de fabrication.
 backend/    API REST Node (models = Ex.4, repositories = Ex.6, sql = Ex.5/7, /health = Ex.3)
 frontend/   React + Bootstrap (Vite) — page « / » = tableau Kanban (Ex.8)
 docs/       diagrammes + captures pour le worksheet
-reponses/   réponses rédigées des exercices
-wireframe/  maquettes Balsamiq (Ex.1)
 ```
+
+> Ce dépôt ne contient que le code de l'application (projet GitHub).
+> Les documents de l'étude de cas (énoncé, worksheet, réponses rédigées, wireframes, TODO)
+> vivent dans le dossier parent `etude_de_cas_2/`.
 
 ## Suivi
 
 - Jira : projet **EDC2** — https://rukundoronaldo4.atlassian.net/jira/software/projects/EDC2/boards/68
-- Checklist : `TODO.md`
-- Livrable : `FT_Kanban-B2.docx` (worksheet à rendre sur le LMS)
+- Checklist : `../TODO.md`
+- Livrable : `../sujet/FT_Kanban-B2.docx` (worksheet à rendre sur le LMS)
