@@ -20,6 +20,9 @@
   ],
   "author": "Rukundo Ronaldo",
   "license": "ISC",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "dependencies": {
     "@prisma/client": "^6.8.2",
     "cors": "^2.8.5",
