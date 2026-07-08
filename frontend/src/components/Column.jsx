@@ -28,7 +28,7 @@ export default function Column({ id, intitule, taches, onSelect, onDrop }) {
         {taches.map((tache) => (
           <TaskCard key={tache.id} tache={tache} onSelect={onSelect} />
         ))}
-        {taches.length === 0 && <div className="kanban-empty">Déposer une carte ici</div>}
+        <div className="kanban-empty">Déposer une carte ici</div>
       </div>
     </section>
   )

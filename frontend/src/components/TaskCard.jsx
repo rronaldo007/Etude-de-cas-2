@@ -17,12 +17,6 @@ function jourMois(echeance) {
   return `${String(d.getUTCDate()).padStart(2, '0')}/${String(d.getUTCMonth() + 1).padStart(2, '0')}`
 }
 
-function couleurAvatar(nom) {
-  let h = 0
-  for (const c of nom) h = (h * 31 + c.charCodeAt(0)) % 360
-  return `hsl(${h}, 45%, 45%)`
-}
-
 export default function TaskCard({ tache, onSelect }) {
   const { nom, couleur, priorite, reference, quantite, assigne, echeance } = tache
 
@@ -60,9 +54,7 @@ export default function TaskCard({ tache, onSelect }) {
           <div className="kanban-card-foot">
             {assigne && (
               <div className="kanban-assignee">
-                <span className="kanban-avatar" style={{ backgroundColor: couleurAvatar(assigne) }}>
-                  {initiales(assigne)}
-                </span>
+                <span className="kanban-avatar">{initiales(assigne)}</span>
                 <span>{assigne}</span>
               </div>
             )}
