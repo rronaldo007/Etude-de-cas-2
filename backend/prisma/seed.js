@@ -21,7 +21,7 @@ async function main() {
 }
 
 main()
-  .then(() => console.log('✅ Seed terminé : 4 colonnes + 5 tâches'))
+  .then(() => console.log('Seed terminé : 4 colonnes + 5 tâches'))
   .catch((e) => {
     console.error(e)
     process.exitCode = 1

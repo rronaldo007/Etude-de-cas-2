@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 3000
 async function start() {
   try {
     await prisma.$queryRaw`SELECT 1`
-    console.log('✅ Connexion à la base de données MySQL réussie (Prisma)')
+    console.log('Connexion à la base de données MySQL réussie (Prisma)')
   } catch (err) {
-    console.error('❌ Échec de la connexion à la base de données :', err.message)
+    console.error('Échec de la connexion à la base de données :', err.message)
   }
 
   app.listen(PORT, () => {
