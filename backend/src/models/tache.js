@@ -8,4 +8,6 @@ const tacheSchema = z.object({
   colonneId: z.number().int().positive('La colonne de rattachement est obligatoire'),
 })
 
-module.exports = { tacheSchema }
+const tacheCreateSchema = tacheSchema.omit({ colonneId: true })
+
+module.exports = { tacheSchema, tacheCreateSchema }
