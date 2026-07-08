@@ -10,4 +10,6 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'jaydee-kanban-backend' })
 })
 
+app.use('/api/taches', require('./routes/taches'))
+
 module.exports = app
