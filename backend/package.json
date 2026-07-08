@@ -11,14 +11,21 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed"
   },
-  "keywords": ["kanban", "express", "prisma", "mysql", "api-rest"],
+  "keywords": [
+    "kanban",
+    "express",
+    "prisma",
+    "mysql",
+    "api-rest"
+  ],
   "author": "Rukundo Ronaldo",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.8.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "jest": "^29.7.0",
