@@ -1,0 +1,28 @@
+{
+  "name": "jaydee-kanban-backend",
+  "version": "1.0.0",
+  "description": "API REST du tableau Kanban Jaydee — Node.js + Express, ORM Prisma, persistance MySQL (substitution de H2, documentée dans le worksheet)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --runInBand",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed"
+  },
+  "keywords": ["kanban", "express", "prisma", "mysql", "api-rest"],
+  "author": "Rukundo Ronaldo",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.5",
+    "prisma": "^6.8.2",
+    "supertest": "^7.0.0"
+  }
+}

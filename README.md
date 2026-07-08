@@ -9,11 +9,11 @@ un tableau de pilotage visuel des ordres de fabrication.
 |--------|-------------|
 | Présentation (frontend) | React + Bootstrap (Vite) |
 | API REST | Node.js (Express) |
-| Accès aux données | ORM + couche repository |
-| Persistance | H2 → **SQLite** (fichier sur disque, équivalent Node) |
+| Accès aux données | ORM **Prisma** + couche repository |
+| Persistance | H2 → **MySQL** |
 
-> Stack fixée par l'énoncé. `H2` est substitué par `SQLite` côté Node (équivalent fichier-sur-disque) ;
-> la substitution est documentée dans les réponses.
+> Stack fixée par l'énoncé. `H2` (base embarquée Java) est substitué par `MySQL` côté Node,
+> piloté par l'ORM Prisma ; la substitution est documentée dans les réponses.
 
 ## Structure
 
