@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap'
 import { fetchTaches } from '../api/taches'
+import TopBar from '../components/TopBar'
 import Column from '../components/Column'
 
 function grouperParColonne(taches) {
@@ -28,14 +28,14 @@ export default function Board() {
   const colonnes = grouperParColonne(taches)
 
   return (
-    <Container fluid className="py-4">
-      <h1 className="h3 mb-4">Jaydee — Tableau Kanban</h1>
-      {erreur && <p className="text-danger">{erreur}</p>}
-      <div className="d-flex gap-3 overflow-auto">
+    <>
+      <TopBar />
+      {erreur && <p className="text-danger px-4 pt-3 mb-0">{erreur}</p>}
+      <div className="kanban-board">
         {colonnes.map((colonne) => (
           <Column key={colonne.id} intitule={colonne.intitule} taches={colonne.taches} />
         ))}
       </div>
-    </Container>
+    </>
   )
 }

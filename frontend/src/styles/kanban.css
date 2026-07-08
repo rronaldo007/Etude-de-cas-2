@@ -1,0 +1,252 @@
+:root {
+  --kb-navbar: #2f6fab;
+  --kb-navbar-dark: #2a6199;
+  --kb-page: #f1f3f5;
+  --kb-col: #e9ecef;
+  --kb-col-title: #5d636a;
+  --kb-count: #ced4da;
+  --kb-text: #212529;
+  --kb-muted: #6c757d;
+  --kb-border: #dee2e6;
+}
+
+body {
+  background: var(--kb-page);
+}
+
+.kanban-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 56px;
+  padding: 0 24px;
+  background: var(--kb-navbar);
+  color: #fff;
+}
+
+.kanban-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.kanban-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 15px;
+}
+
+.kanban-title {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.kanban-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kanban-search {
+  height: 32px;
+  width: 240px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+}
+
+.kanban-btn-new {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kanban-btn-new:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.kanban-board {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.kanban-col {
+  flex: 0 0 296px;
+  background: var(--kb-col);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.kanban-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 12px;
+}
+
+.kanban-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--kb-col-title);
+}
+
+.kanban-col-count {
+  min-width: 22px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--kb-count);
+  color: var(--kb-col-title);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.kanban-col-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kanban-card {
+  display: flex;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--kb-border);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.kanban-card-accent {
+  flex: 0 0 4px;
+}
+
+.kanban-card-body {
+  flex: 1;
+  padding: 12px;
+}
+
+.kanban-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.kanban-of {
+  font-size: 12px;
+  color: var(--kb-muted);
+}
+
+.kanban-prio {
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.kanban-prio--haute {
+  background: #fde7e7;
+  color: #c0392b;
+}
+
+.kanban-prio--moyenne {
+  background: #fdf0e0;
+  color: #b9770e;
+}
+
+.kanban-prio--basse {
+  background: #e9f7ef;
+  color: #1e8449;
+}
+
+.kanban-card-title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--kb-text);
+}
+
+.kanban-card-couleur {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.kanban-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.kanban-hex {
+  font-size: 13px;
+  color: var(--kb-muted);
+}
+
+.kanban-card-ref {
+  font-size: 13px;
+  color: var(--kb-muted);
+}
+
+.kanban-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #eef0f2;
+}
+
+.kanban-assignee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--kb-text);
+}
+
+.kanban-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.kanban-date {
+  font-size: 12px;
+  color: var(--kb-muted);
+}
+
+.kanban-empty {
+  padding: 14px;
+  border: 1px dashed #adb5bd;
+  border-radius: 8px;
+  color: #868e96;
+  font-size: 13px;
+  text-align: center;
+}

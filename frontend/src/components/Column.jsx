@@ -1,15 +1,18 @@
-import { Badge } from 'react-bootstrap'
 import TaskCard from './TaskCard'
 
 export default function Column({ intitule, taches }) {
   return (
-    <div className="bg-light rounded p-3" style={{ minWidth: 260 }}>
-      <h2 className="h6 text-uppercase text-muted d-flex justify-content-between mb-3">
-        {intitule} <Badge bg="secondary">{taches.length}</Badge>
-      </h2>
-      {taches.map((tache) => (
-        <TaskCard key={tache.id} tache={tache} />
-      ))}
-    </div>
+    <section className="kanban-col">
+      <header className="kanban-col-header">
+        <span className="kanban-col-title">{intitule}</span>
+        <span className="kanban-col-count">{taches.length}</span>
+      </header>
+      <div className="kanban-col-cards">
+        {taches.map((tache) => (
+          <TaskCard key={tache.id} tache={tache} />
+        ))}
+        {taches.length === 0 && <div className="kanban-empty">Déposer une carte ici</div>}
+      </div>
+    </section>
   )
 }

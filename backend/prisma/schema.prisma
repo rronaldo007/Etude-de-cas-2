@@ -16,11 +16,16 @@ model Colonne {
 }
 
 model Tache {
-  id        Int     @id @default(autoincrement())
-  nom       String  @db.VarChar(100)
-  couleur   String  @db.Char(6)
+  id        Int       @id @default(autoincrement())
+  nom       String    @db.VarChar(100)
+  couleur   String    @db.Char(6)
+  priorite  String?   @db.VarChar(10)
+  reference String?   @db.VarChar(30)
+  quantite  Int?
+  assigne   String?   @db.VarChar(60)
+  echeance  DateTime? @db.Date
   colonneId Int
-  colonne   Colonne @relation(fields: [colonneId], references: [id])
+  colonne   Colonne   @relation(fields: [colonneId], references: [id])
 
   @@map("tache")
 }

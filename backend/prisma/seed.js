@@ -11,11 +11,11 @@ async function main() {
 
   await prisma.tache.createMany({
     data: [
-      { nom: 'Réglage presse #3', couleur: 'FF0000', colonneId: aFaire.id },
-      { nom: 'Changement de moule', couleur: 'FFAA00', colonneId: aFaire.id },
-      { nom: 'Injection carter X', couleur: '00AA00', colonneId: enCours.id },
-      { nom: 'Contrôle dimensionnel lot 42', couleur: '0066FF', colonneId: controle.id },
-      { nom: 'Conditionnement palette', couleur: '9900CC', colonneId: termine.id },
+      { nom: 'Moule A12', couleur: 'E74C3C', priorite: 'Haute', reference: 'PL-A12', quantite: 500, assigne: 'M. Leroy', echeance: new Date('2026-06-18'), colonneId: aFaire.id },
+      { nom: 'Réf X90', couleur: '8E44AD', priorite: 'Basse', reference: 'PL-X90', quantite: 120, assigne: 'S. Diallo', echeance: new Date('2026-06-22'), colonneId: aFaire.id },
+      { nom: 'Pièce B07', couleur: '3498DB', priorite: 'Moyenne', reference: 'PL-B07', quantite: 1000, assigne: 'J. Dupont', echeance: new Date('2026-06-17'), colonneId: enCours.id },
+      { nom: 'Lot C33', couleur: 'E67E22', priorite: 'Haute', reference: 'PL-C33', quantite: 300, assigne: 'A. Koffi', echeance: new Date('2026-06-16'), colonneId: controle.id },
+      { nom: 'Pièce D01', couleur: '27AE60', priorite: 'Basse', reference: 'PL-D01', quantite: 750, assigne: 'J. Dupont', echeance: new Date('2026-06-14'), colonneId: termine.id },
     ],
   })
 }
