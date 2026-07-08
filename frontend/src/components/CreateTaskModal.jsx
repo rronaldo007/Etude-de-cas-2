@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 import { creerTache } from '../api/taches'
+import ColorPicker from './ColorPicker'
 
 export default function CreateTaskModal({ show, onClose, onCreated }) {
   const [nom, setNom] = useState('')
@@ -38,19 +39,8 @@ export default function CreateTaskModal({ show, onClose, onCreated }) {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Couleur de la tâche (hex RGB, sans #) *</Form.Label>
-            <div className="d-flex align-items-center gap-2">
-              <span
-                className="kanban-swatch"
-                style={{ width: 28, height: 28, backgroundColor: `#${couleur}` }}
-              />
-              <Form.Control
-                value={couleur}
-                onChange={(e) => setCouleur(e.target.value)}
-                placeholder="Ex. : 3498DB"
-                required
-              />
-            </div>
+            <Form.Label>Couleur de la tâche</Form.Label>
+            <ColorPicker value={couleur} onChange={setCouleur} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Colonne de destination</Form.Label>

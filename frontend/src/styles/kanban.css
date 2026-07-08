@@ -253,6 +253,26 @@ body {
   text-align: center;
 }
 
+.kanban-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.kanban-color {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.kanban-color.is-selected {
+  border-color: #212529;
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
 @media (max-width: 640px) {
   .kanban-navbar {
     height: auto;

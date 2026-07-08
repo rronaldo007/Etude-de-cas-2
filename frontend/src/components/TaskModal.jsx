@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Modal, Form, Button, Row, Col } from 'react-bootstrap'
 import { modifierTache, supprimerTache } from '../api/taches'
+import ColorPicker from './ColorPicker'
 
 function pourInputDate(echeance) {
   if (!echeance) return ''
@@ -87,14 +88,8 @@ export default function TaskModal({ tache, colonnes, onClose, onSaved, onDeleted
             </Col>
           </Row>
           <Form.Group className="mb-3">
-            <Form.Label>Couleur (hex RGB, sans #) *</Form.Label>
-            <div className="d-flex align-items-center gap-2">
-              <span
-                className="kanban-swatch"
-                style={{ width: 28, height: 28, backgroundColor: `#${form.couleur}` }}
-              />
-              <Form.Control value={form.couleur} onChange={(e) => set('couleur', e.target.value)} required />
-            </div>
+            <Form.Label>Couleur</Form.Label>
+            <ColorPicker value={form.couleur} onChange={(valeur) => set('couleur', valeur)} />
           </Form.Group>
           <Row className="mb-3">
             <Col>
