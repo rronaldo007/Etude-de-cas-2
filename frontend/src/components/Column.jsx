@@ -1,6 +1,6 @@
 import TaskCard from './TaskCard'
 
-export default function Column({ intitule, taches }) {
+export default function Column({ intitule, taches, onSelect }) {
   return (
     <section className="kanban-col">
       <header className="kanban-col-header">
@@ -9,7 +9,7 @@ export default function Column({ intitule, taches }) {
       </header>
       <div className="kanban-col-cards">
         {taches.map((tache) => (
-          <TaskCard key={tache.id} tache={tache} />
+          <TaskCard key={tache.id} tache={tache} onSelect={onSelect} />
         ))}
         {taches.length === 0 && <div className="kanban-empty">Déposer une carte ici</div>}
       </div>

@@ -21,6 +21,18 @@ const tacheRepository = {
       include: { colonne: true },
     })
   },
+
+  update(id, data) {
+    return prisma.tache.update({
+      where: { id },
+      data,
+      include: { colonne: true },
+    })
+  },
+
+  remove(id) {
+    return prisma.tache.delete({ where: { id } })
+  },
 }
 
 module.exports = { tacheRepository }

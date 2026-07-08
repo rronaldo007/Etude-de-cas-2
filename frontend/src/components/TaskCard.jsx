@@ -23,11 +23,11 @@ function couleurAvatar(nom) {
   return `hsl(${h}, 45%, 45%)`
 }
 
-export default function TaskCard({ tache }) {
+export default function TaskCard({ tache, onSelect }) {
   const { nom, couleur, priorite, reference, quantite, assigne, echeance } = tache
 
   return (
-    <article className="kanban-card">
+    <article className="kanban-card" onClick={() => onSelect(tache)}>
       <span className="kanban-card-accent" style={{ backgroundColor: `#${couleur}` }} />
       <div className="kanban-card-body">
         <div className="kanban-card-top">

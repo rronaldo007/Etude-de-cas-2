@@ -1,7 +1,7 @@
 const express = require('express')
 const { tacheRepository } = require('../repositories/tacheRepository')
 const { colonneRepository } = require('../repositories/colonneRepository')
-const { tacheCreateSchema } = require('../models/tache')
+const { tacheCreateSchema, tacheUpdateSchema } = require('../models/tache')
 
 const router = express.Router()
 
@@ -23,6 +23,20 @@ router.post('/', async (req, res) => {
 
   const tache = await tacheRepository.create({ ...parsed.data, colonneId: aFaire.id })
   res.status(201).json(tache)
+})
+
+router.put('/:id', async (req, res) => {
+  const parsed = tacheUpdateSchema.safeParse(req.body)
+  if (!parsed.success) {
+    return res.status(400).json({ error: parsed.error.issues.map((i) => i.message) })
+  }
+  const tache = await tacheRepository.update(Number(req.params.id), parsed.data)
+  res.json(tache)
+})
+
+router.delete('/:id', async (req, res) => {
+  await tacheRepository.remove(Number(req.params.id))
+  res.status(204).end()
 })
 
 module.exports = router

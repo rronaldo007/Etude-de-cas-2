@@ -10,9 +10,12 @@ const tacheSchema = z.object({
   quantite: z.number().int().positive().optional(),
   assigne: z.string().trim().max(60).optional(),
   echeance: z.coerce.date().optional(),
+  description: z.string().trim().max(500).optional(),
   colonneId: z.number().int().positive('La colonne de rattachement est obligatoire'),
 })
 
 const tacheCreateSchema = tacheSchema.omit({ colonneId: true })
 
-module.exports = { tacheSchema, tacheCreateSchema }
+const tacheUpdateSchema = tacheSchema.partial()
+
+module.exports = { tacheSchema, tacheCreateSchema, tacheUpdateSchema }

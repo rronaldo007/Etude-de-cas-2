@@ -22,8 +22,9 @@ model Tache {
   priorite  String?   @db.VarChar(10)
   reference String?   @db.VarChar(30)
   quantite  Int?
-  assigne   String?   @db.VarChar(60)
-  echeance  DateTime? @db.Date
+  assigne     String?   @db.VarChar(60)
+  echeance    DateTime? @db.Date
+  description String?   @db.Text
   colonneId Int
   colonne   Colonne   @relation(fields: [colonneId], references: [id])
 

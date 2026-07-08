@@ -11,5 +11,6 @@ app.get('/health', (req, res) => {
 })
 
 app.use('/api/taches', require('./routes/taches'))
+app.use('/api/colonnes', require('./routes/colonnes'))
 
 module.exports = app

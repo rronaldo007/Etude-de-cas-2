@@ -1,4 +1,4 @@
-export default function TopBar() {
+export default function TopBar({ filtre, onFiltre, onNouvelle }) {
   return (
     <header className="kanban-navbar">
       <div className="kanban-brand">
@@ -10,9 +10,10 @@ export default function TopBar() {
           className="kanban-search"
           type="search"
           placeholder="Rechercher une tâche…"
-          disabled
+          value={filtre}
+          onChange={(e) => onFiltre(e.target.value)}
         />
-        <button className="kanban-btn-new" type="button" disabled>
+        <button className="kanban-btn-new" type="button" onClick={onNouvelle}>
           + Nouvelle tâche
         </button>
       </div>
