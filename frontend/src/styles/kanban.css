@@ -96,6 +96,15 @@ body {
   padding: 12px;
 }
 
+.kanban-col--survol {
+  outline: 2px dashed var(--kb-navbar);
+  outline-offset: -2px;
+}
+
+.kanban-card {
+  cursor: grab;
+}
+
 .kanban-col-header {
   display: flex;
   align-items: center;

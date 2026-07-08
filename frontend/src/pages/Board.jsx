@@ -1,22 +1,10 @@
 import { useEffect, useState } from 'react'
-import { fetchTaches } from '../api/taches'
+import { fetchTaches, modifierTache } from '../api/taches'
 import { fetchColonnes } from '../api/colonnes'
 import TopBar from '../components/TopBar'
 import Column from '../components/Column'
 import CreateTaskModal from '../components/CreateTaskModal'
 import TaskModal from '../components/TaskModal'
-
-function grouperParColonne(taches) {
-  const map = new Map()
-  for (const tache of taches) {
-    const { colonne } = tache
-    if (!map.has(colonne.id)) {
-      map.set(colonne.id, { id: colonne.id, intitule: colonne.intitule, taches: [] })
-    }
-    map.get(colonne.id).taches.push(tache)
-  }
-  return [...map.values()].sort((a, b) => a.id - b.id)
-}
 
 export default function Board() {
   const [taches, setTaches] = useState([])
@@ -39,6 +27,18 @@ export default function Board() {
       .catch(() => {})
   }, [])
 
+  async function deplacer(e, colonneId) {
+    const id = Number(e.dataTransfer.getData('text/plain'))
+    const tache = taches.find((t) => t.id === id)
+    if (!tache || tache.colonneId === colonneId) return
+    try {
+      await modifierTache(id, { colonneId })
+      charger()
+    } catch (err) {
+      setErreur(err.message)
+    }
+  }
+
   const texte = filtre.trim().toLowerCase()
   const tachesFiltrees = taches.filter(
     (t) =>
@@ -46,7 +46,11 @@ export default function Board() {
       (t.reference || '').toLowerCase().includes(texte) ||
       String(1000 + t.id).includes(texte)
   )
-  const colonnesAffichees = grouperParColonne(tachesFiltrees)
+  const colonnesAffichees = colonnes.map((c) => ({
+    id: c.id,
+    intitule: c.intitule,
+    taches: tachesFiltrees.filter((t) => t.colonneId === c.id),
+  }))
 
   return (
     <>
@@ -54,7 +58,14 @@ export default function Board() {
       {erreur && <p className="text-danger px-4 pt-3 mb-0">{erreur}</p>}
       <div className="kanban-board">
         {colonnesAffichees.map((c) => (
-          <Column key={c.id} intitule={c.intitule} taches={c.taches} onSelect={setTacheActive} />
+          <Column
+            key={c.id}
+            id={c.id}
+            intitule={c.intitule}
+            taches={c.taches}
+            onSelect={setTacheActive}
+            onDrop={deplacer}
+          />
         ))}
       </div>
 

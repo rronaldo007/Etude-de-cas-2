@@ -6,8 +6,16 @@ const taches = [
   { id: 2, nom: 'Injection carter X', couleur: '00AA00', colonneId: 2, colonne: { id: 2, intitule: 'En cours' } },
 ]
 
+const colonnes = [
+  { id: 1, intitule: 'A Faire' },
+  { id: 2, intitule: 'En cours' },
+]
+
 beforeEach(() => {
-  global.fetch = vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve(taches) })
+  global.fetch = vi.fn((url) => {
+    const data = url === '/api/colonnes' ? colonnes : taches
+    return Promise.resolve({ ok: true, json: () => Promise.resolve(data) })
+  })
 })
 
 afterEach(() => {

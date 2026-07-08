@@ -27,7 +27,12 @@ export default function TaskCard({ tache, onSelect }) {
   const { nom, couleur, priorite, reference, quantite, assigne, echeance } = tache
 
   return (
-    <article className="kanban-card" onClick={() => onSelect(tache)}>
+    <article
+      className="kanban-card"
+      draggable
+      onDragStart={(e) => e.dataTransfer.setData('text/plain', String(tache.id))}
+      onClick={() => onSelect(tache)}
+    >
       <span className="kanban-card-accent" style={{ backgroundColor: `#${couleur}` }} />
       <div className="kanban-card-body">
         <div className="kanban-card-top">
