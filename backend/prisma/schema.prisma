@@ -1,0 +1,36 @@
+// Schéma Prisma — entités du tableau Kanban Jaydee (Ex. 4).
+// Les modèles Prisma tiennent lieu d'« entités » (équivalent des classes @Entity JPA).
+// Substitutions documentées : H2 → MySQL, type Java `Long` → `Int` (auto-incrément).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Entité Colonne : une colonne du tableau (ex. « A Faire », « En cours »…).
+model Colonne {
+  id       Int    @id @default(autoincrement())
+  intitule String @db.VarChar(50)
+
+  // Relation 1—N : une colonne contient plusieurs tâches.
+  taches Tache[]
+
+  @@map("colonne")
+}
+
+// Entité Tache : un ordre de fabrication placé dans une colonne.
+model Tache {
+  id      Int    @id @default(autoincrement())
+  nom     String @db.VarChar(100)
+  couleur String @db.Char(6) // couleur RGB hexadécimale SANS le dièse (ex. "FF0000")
+
+  // Relation N—1 vers Colonne (clé étrangère colonneId).
+  colonneId Int
+  colonne   Colonne @relation(fields: [colonneId], references: [id])
+
+  @@map("tache")
+}
